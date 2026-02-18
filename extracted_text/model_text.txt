@@ -1,0 +1,876 @@
+Enroll. No.
+
+MARWADI UNIVERSITY
+h A VAs H NAAC FOET, MU-FOT
+3 c a d INFORMATION AND COMMUNICATION TECHNOLOGY
+University
+Marwadi Chandarana Group MU FINAL EXAM
+
+SEMESTER 5 - Winter - Dec-2025
+
+Subject : COMPUTER NETWORKS ( 01CT0503 )
+
+Date : 09-Dec-2025 Time : 2 Hours Total Marks : 60
+Instructions :
+1. Attempt all questions.
+2. Make suitable assumptions wherever necessary.
+3. Figures to the right indicate full marks.
+4. Do not write/sign/indication/tick mark anything other than Enroll No. at a specific place on the question paper.
+
+Here’s a clear 4-mark comparison of bit stuffing vs. byte stuffing framing structures:
+
+Bit Stuffing
+
+Framing structure: Special bit pattern (flag) (e.g., 01111110) marks the start and end of a frame.
+Stuffing rule: If sender data contains five consecutive 1s, an extra 0 bit is inserted after them.
+At receiver: Removes the stuffed Os when five consecutive Is are followed by 0.
+
+Use case: Works at bit-oriented protocols (e.g., HDLC).
+
+Byte Stuffing
+
+Framing structure: Special byte (flag byte) (e.g., DLE STX for start, DLE ETX for end) marks the boundaries.
+Stuffing rule: If the flag byte appears in the data, sender adds an escape byte (DLE) before it.
+At receiver: Removes the escape byte to recover the original data.
+
+Use case: Works at byte-oriented protocols (e.g., PPP, BISYNC).
+
+In short (tabular form for exam):
+
+Bit Stuffing Byte Stuffing
+
+Unit of framing Bit pattern (e.g., 01111110) Byte (e.g., DLE STX / DLE ETX)
+Stuffing method Insert 0 after five consecutive Is Insert escape byte before flag
+Receiver action Removes extra 0s Removes escape byte
+Protocol type Bit-oriented (HDLC) Byte-oriented (PPP, BISYNC)
+Bit Stuffing (Bit-Oriented) Byte Stuffing (Byte-Oriented)
+| Flag | Data with stuffing | Flag | | DLE STX | Data with stuffing | DLE ETX |
+
+01111110 01111100100101 O1111110 Start A DLE—DLEDLE B_ End
+Explanation: Explanation:
+- Flag = 01111110 - Flag bytes: DLE STX (start), DLE ETX (end)
+- After 5 consecutive |s, - Ifa DLE appears in data,
+
+a 0 is stuffed (shown above). an extra DLE is inserted (escaped).
+
+- Receiver removes the stuffed 0. - Receiver removes the extra DLE.
+
+
+Simple and easy to implement.
+
+Ensures smooth and predictable network traffic.
+
+Prevents sudden bursts that may congest routers.
+
+Disadvantages
+
+Does not allow bursts even if the network is free.
+
+Possible packet drops if incoming rate is high and bucket is small.
+Less flexible compared to the Token Bucket Algorithm.
+
+(B) | Compare Go Back to N with Selective Repeat reQuest protocol. [4] L4 | CO2
+
+Ans. | Here’s a concise 4-mark comparison of Go-Back-N (GBN) vs Selective Repeat (SR) ARQ:
+Comparison Table (Exam-friendly)
+
+Go-Back-N (GBN) Selective Repeat (SR)
+
+Window size Sender: N, Receiver: | Sender: N, Receiver: N
+
+Cumulative ACK (acknowledges all previous
+
+f Individual ACK for each frame
+rames)
+
+Acknowledgment
+
+Error handling On error, retransmit all frames from error onwards __Retransmit only the erroneous frames
+
+Less efficient under high error rate (many frames More efficient, avoids unnecessary
+
+Efficien ; .
+creney retransmitted) retransmission
+
+Receiver buffer Needs minimal buffer (only next expected frame) Needs buffer for out-of-order frames
+Short summary (1-2 lines)
+
+GBN: Simple, retransmits multiple frames after error, low buffer requirement.
+
+SR: Complex, retransmits only erroneous frames, higher efficiency and buffer requirement.
+
+OR
+
+(A) | Discover the role of SMTP in email transfer. Draw and label the envelope vs message
+
+structure. [6] L3 | COS
+
+Ans. {Role of SMTP in Email Transfer
+
+SMTP (Simple Mail Transfer Protocol) is an application-layer protocol used for sending, routing, and forwarding
+emails across the Internet. It mainly handles push-based email delivery from the sender to the recipient’s mail
+server.
+
+Functions of SMTP:
+
+Mail Submission:
+
+SMTP transfers email from the Mail User Agent (MUA) to the Mail Transfer Agent (MTA) (e.g., Outlook —
+Gmail server).
+
+Mail Relay:
+SMTP servers forward the email across multiple mail servers until it reaches the recipient’s domain.
+
+Mail Delivery:
+The recipient’s MTA receives the mail and hands it to a Mail Delivery Agent (MDA).
+
+Commands & Replies:
+SMTP uses commands like HELO, MAIL FROM, RCPT TO, DATA, and replies like 250 OK.
+
+Text-Based Protocol:
+SMTP sends emails as plain text over TCP, usually on port 25 / 587 / 465.
+
+Store-and-Forward Mechanism:
+If the receiver is offline, SMTP queues the email and retries delivery.
+
+
+Ans.
+
+Que.5
+
+SMTP Envelope
+
+MAIL FROM: sender@example.com
+RCPT TO: user@domain.com
+
+Email Message Body
+
+Message Header
+From: sender@example.com
+To: user@domain.com
+Subject: Meeting Update
+
+Message Content
+(Text, HTML, attachmentds)
+
+Difference:
+Envelope:
+
+Used by SMTP for routing and delivery (invisible to the user). Contains MAIL FROM and RCPT TO.
+
+Message:
+The actual email content, containing headers (From, To, Subject) and body (text, attachments).
+
+Analyze the CRC encoding and decoding process with block diagram. [4]
+
+Sender Receiver
+
+Remainder
+
+Divisor
+Pu 3 A, A, do
+1 Unreliable
+
+transmission
+
+eal
+
+CO2
+
+
+(A) | What is the need of Hierarchical routing algorithm? Build the full routing table and
+Hierarchical routing table for node 1A for the below given network.
+
+Region 1 Region 2
+
+——
+
+2K 2B
+\
+
+[8] L4 | CO6
+
+/
+‘
+7 4 ‘
+aie ao” a -* ee SE .*
+
+Region3 Region4 Region 5
+
+Ans. Full table for 1A Hierarchical table for 1A
+Dest. Line Hops Dest. Line Hops
+Region 1 Region 1A
+
+1C
+2A
+2B
+2C
+2D
+3A
+3B
+4A
+4B
+4C
+5A
+5B
+5C
+5D
+5E
+
+4
+_ Woe NC BEL
+
+Region3 Region4 Region5
+
+Draw a simple topology of two PCs connected via a switch and a router. Label all the
+cables used and explain why each cable type is chosen. [6] L3 | CO6
+
+Ans. Topology Diagram:
+PCl (Straight-through)——_,
+
+| Switch ] ——(Straight-through)——|[ Router ]
+
+PC2 ——(Straight-through)——
+
+
+Explanation of Cable Types:
+PC to Switch (PC1—Switch & PC2—Switch):
+
+Straight-through cable is used because end devices (PCs) connect to networking devices (switch).
+
+Switch to Router:
+
+Straight-through cable is used because routers and switches are different device types.
+
+Reason for Choice:
+Straight-through cables are used when connecting different device types (PC—Switch, Switch—Router).
+
+Crossover cables are only needed for similar devices (e.g., Switch-Switch, Router—Router) in older setups without
+auto-MDIX.
+
+OR
+
+(A) | Analyze below given subnet and identify the shortest path from node A to node D using
+shortesh path routing algorithm. Mention all working nodes and calculation.
+
+B ¥ C
+
+[8] L4 | CO6
+
+
+Ans,
+
+G (5, E) H (9, G) G (5, E)
+(e) (f)
+
+In a lab setup, you have the option to connect two Cisco switches using either a crossover
+cable or a fiber optic cable. Evaluate both options and recommend the better choice for (a) a
+classroom lab and (b) a data center environment.
+
+Crossover Cable (UTP Copper):
+
+Advantages:
+
+Low cost and easy availability.
+Simple to set up for short distances.
+Suitable for basic lab practice.
+
+Disadvantages:
+
+JH, F)
+
+
+Limited bandwidth (usually up to 1 Gbps for older Cat5e, 10 Gbps for Cat6/6a).
+Limited distance (up to 100 meters).
+More prone to electromagnetic interference.
+
+Fiber Optic Cable:
+
+Advantages:
+
+Very high bandwidth (10 Gbps to 400 Gbps).
+
+Supports long-distance connections (hundreds of meters to kilometers).
+Immune to electrical interference.
+
+Disadvantages:
+
+Higher cost for both cable and transceivers (SFP modules).
+
+Requires careful handling and skilled installation.
+
+Recommendation:
+
+(a) Classroom Lab: Use a crossover cable because it is inexpensive, easy to connect, and sufficient for small lab
+environments where distance and bandwidth requirements are minimal.
+
+(b) Data Center Environment: Use fiber optic cable because it supports high speed, longer distances, and reliable
+performance in enterprise-level networks.
+
+---Best of Luck---
+
+MARWADI UNIVERSITY
+
+FOET, MU-FOT
+
+INFORMATION AND COMMUNICATION TECHNOLOGY
+Semester SEMESTER 5 - Winter
+
+Subject : COMPUTER NETWORKS ( 01CT0503 )
+Date : 09-Dec-2025 Time : 2 Hours
+
+Difficulty Level Weightage No of Question Total Marks
+
+High 23.64 5 26
+Low 12.73 2 14
+Medium 63.64 11 70
+Module Name Weightage
+Unit 1: Introduction: 14.55
+Unit 2: Data Link Layer 18.18
+Unit 3: Medium Access Control Sub layer 0.00
+Unit 4: Network Layer 30.91
+Unit 5: Transport Layer 10.91
+Unit 6: Application Layer 25.45
+. No of
+
+Blooms Taxonomy Weightage Cuestion
+L1 - Remember / Knowledge 0.00 0
+L2 - Understand 0.00 0
+L3 - Apply 36.36 6
+L4 - Analyze 63.64 12
+L5 - Evaluate 0.00 0
+L6 - Higher order Thinking / 0.00 0
+Creative
+
+@ High
+@ Low
+® Medium
+
+Total Marks : 60
+Question List
+2(B), 4(A), 4(B), 5(A)
+2(A), 5(B)
+1(A), 1(B), 2(A), 2(B), 3(A), 3(B), 4(A), 5(A), 5(B)
+
+No of Question Total Marks Question List
+
+2 16 2(A)
+5 20 1(A), 2(B), 4(B)
+0 0
+5 34 1(B), 5(A), 5(B)
+2 12 3(B), 4(A)
+4 28 3(A), 3(B), 4(A)
+Mocks Question List
+
+0
+
+0
+
+40 2(A), 3(A), 3(B), 4(A), 5(B)
+
+70 1(A), 1(B), 2(A), 2(B), 3(A), 3(B), 4(A),
+
+4(B), 5(A)
+0
+0
+
+@ Apply
+@ Analyze
+
+100
+
+80
+60
+40 36.26 20.91
+39. |__ 1455 18.18 Z Oo
+a
+Cco1 CoO2 CO5 CO6
+
+@ Unit 1: Introduction:
+@ Unit 2: Data Link Layer
+® Unit 3: Medium Access Control Sub layer
+@ Unit 4: Network Layer
+Unit 5: Transport Layer
+Unit 6: Application Layer
+
+(B) | Justify why subnetting is important in a corporate network. Provide three practical reasons
+: [6] L4 | CO6
+with examples.
+
+Ans. | Efficient IP Address Utilization: Prevents wasting IP addresses by assigning only as many addresses as needed per
+
+department.
+
+Example: HR needs 30 hosts — subnet with 32 addresses instead of using a /24.
+
+Improved Network Performance: Reduces broadcast domains, minimizing unnecessary traffic.
+
+Example: Each department has its own subnet to reduce collisions.
+
+Enhanced Security & Management: Allows isolation of different departments or networks for policy enforcement.
+
+Example: Sales subnet is separated from IT subnet, restricting access between them.
+
+up
+
+(A) | Apply the classification of networks based on scale to propose a communication setup for a
+smart city. Explain how each network type (PAN, LAN, MAN, WAN) fits into your
+
+proposal. [8] ee oe
+
+Ans. Designing a communication setup for a smart city requires integrating various types of networks—PAN, LAN,
+
+MAN, and WAN—to support a range of services like smart homes, transportation, healthcare, utilities, and
+governance.
+
+1. Personal Area Network (PAN):
+
+Use Case in Smart City:
+
+Wearable health monitoring devices (e.g., smartwatches).
+Bluetooth-based keyless entry systems in smart homes and cars.
+RFID-enabled systems for public transit cards or inventory tracking.
+
+Role in Communication:
+PANs serve individual users or devices with short-range, low-power connectivity. They are essential for user-
+specific, localized communication in smart devices and homes.
+
+2. Local Area Network (LAN):
+
+Use Case in Smart City:
+
+Networking within government buildings, hospitals, or police departments.
+IoT sensors within smart buildings for HVAC, lighting, and security systems.
+Local servers and employee workstations in municipal offices.
+
+Role in Communication:
+LANs provide high-speed communication over a restricted area (e.g., a building or campus), enabling fast data
+exchange among smart systems within a local environment.
+
+
+3. Metropolitan Area Network (MAN):
+Use Case in Smart City:
+
+Connecting various buildings like schools, administrative offices, libraries, and surveillance networks across the
+city.
+
+City-wide Wi-Fi or fiber infrastructure enabling broadband for citizens and government services.
+Traffic control systems using MAN to interlink road sensors and control centers.
+
+Role in Communication:
+MANs bridge LANs across a city, offering medium-range connectivity and ensuring city-wide data sharing for
+coordinated operations and monitoring.
+
+4. Wide Area Network (WAN):
+Use Case in Smart City:
+
+Interconnection between multiple smart cities or rural-urban hubs.
+Cloud-based data centers and national e-governance portals.
+
+Secure connectivity to global services like weather forecasting, navigation, and emergency services.
+
+Role in Communication:
+WANs provide long-distance communication, ensuring that the smart city can interact with remote servers,
+national agencies, and global platforms securely and reliably.
+
+(B) | Compare odd parity and even parity check. Analyze how 2 dimension parity check helps to
+[4] L4 | CO2
+detect the errors.
+
+Ans, Oda Parity
+
+Adds a parity bit so total number of 1s becomes Adds a parity bit so total number of 1s becomes
+
+Definiti
+cannon even odd
+Purpose Ensures even count of 1s in transmitted data Ensures odd count of 1s in transmitted data
+Error Detects any single-bit error by causing parity Dstente any single bit ener similarly
+Detection mismatch
+Used when odd-parity hardware is implemented
+Common in communication systems and a
+Usage
+memory checks
+b. One error affects two parities c. Two errors affect two parities
+OR
+(A) | Analyze the differences between User EXEC, Privileged EXEC, and Global Configuration 8] 14 | col
+modes in terms of their purpose and command availability.
+
+Ans. {Cisco IOS divides CLI access into several modes, each designed with different levels of permission and command
+
+functionality. The three primary modes are User EXEC, Privileged EXEC, and Global Configuration Mode.
+1. User EXEC Mode
+
+Prompt: Router>
+
+
+Purpose:
+This is the initial mode entered after accessing the device. It provides limited access for basic monitoring and
+diagnostics.
+
+Command Availability:
+
+Basic commands like ping, traceroute, and show (some limited).
+No access to configuration or system-level changes.
+
+Example:
+
+Router> show version
+
+2. Privileged EXEC Mode
+Prompt: Router#
+
+Purpose:
+This mode allows complete access to monitoring commands and is the gateway to configuration modes.
+
+Command Availability:
+
+All show commands (e.g., show running-config, show interfaces)
+Access to copy, reload, debug, erase, etc.
+
+Entry into global configuration mode using configure terminal.
+Example:
+
+Router# show running-config
+
+3. Global Configuration Mode
+Prompt: Router(config)#
+
+Purpose:
+Used to make system-wide configuration changes to the device.
+
+Command Availability:
+
+Commands to set hostname, passwords, interfaces, routing protocols, banners, etc.
+Access to sub-modes like interface or line configuration.
+
+Example:
+
+Router(config)# hostname CoreRouter
+
+Comparison Table
+Aspect User EXEC Mode Privileged EXEC Mode Global Configuration Mode
+Prompt Router> Router# Router(config)#
+Access Level Limited (monitoring only) |Full monitoring + control Device configuration
+Can configure device? x
+Typical Commands ping, show show, copy, debug hostname, interface, etc.
+(B) | Compare HDLC with PPP protocol. [4] | L4 | co2
+Ans.
+
+Here’s a concise 4-mark comparison of HDLC vs PPP protocol:
+
+Feature HDLC (High-Level Data Link Control) PPP (Point-to-Point Protocol)
+
+Type Bit-oriented protocol Byte-oriented protocol
+emda Uke Mainly used in synchronous networks (e.g., Used in point-to-point links, often over
+WANs, leased lines) serial/modem connections
+Frame Uses flags, addresses, control fields Simpler frame with flag, address, control = fixed
+
+Structure
+
+
+HDLC (High-Level Data Link Control) PPP (Point-to-Point Protocol)
+
+Protocol . Supports multiple protocols (IP, IPv6, etc.) via
+Support Supports only synchronous, single protocol protocol field
+
+Complexity | More complex, supports modes (NRM, ABM) Simpler and more flexible
+
+Summary:
+
+HDLC = bit-oriented, protocol-specific, synchronous.
+PPP = byte-oriented, multiprotocol, works over point-to-point links.
+
+weap
+(A) | Define multimedia and explain its importance. Support your answer with memory retention 8] L4 | cos
+statistics (20%-—80%) and list any four benefits of using multimedia.
+Ans. | Definition of Multimedia
+
+Multimedia is the integrated use of multiple media elements — text, graphics/images, sound/audio, animation, and
+video — in a single application to create a rich, engaging, and interactive experience. In web-based context, it
+refers to online content that combines two or more of these elements with user interactivity.
+
+Importance of Multimedia — Supported by Memory Retention Research
+
+Multimedia is extremely important in education, training, business, and entertainment because human beings learn
+and remember far better when multiple senses are engaged and when they actively participate. Research proves the
+following retention rates:
+
+Method of Receiving Information Approximate Retention Rate
+Only seeing (passive reading/looking) 20%
+Only hearing (lectures, audio) 30%
+Seeing + Hearing together (video, presentation) 50%
+Seeing + Hearing + Active Interaction (clicking, choosing, doing) 80%
+
+This dramatic jump from 20-30% to 80% clearly shows why multimedia (especially interactive multimedia) is so
+powerful — it moves learners from passive recipients to active participants, which creates deeper understanding
+and long-term memory.
+
+Four Key Benefits of Using Multimedia
+
+Improves Retention and Learning — By combining visual, auditory, and interactive elements, users remember up to
+80% of the content (as shown in the table above).
+
+Addresses Multiple Learning Styles — Some people learn best by reading (text), some by watching
+(video/animation), some by listening (audio), and some by doing (interaction). Multimedia supports all types
+simultaneously.
+
+Enhances User Engagement and Enjoyment — Dull facts become interesting when presented with animations,
+music, videos, and attractive graphics (e.g., a boring history lesson becomes exciting with a video reconstruction).
+
+Allows User Control and Personalization — Through interactivity and non-linear navigation, users decide what to
+see, when, and how deeply — making the experience more effective and satisfying (e.g., clicking topics in an e-
+learning portal).
+
+What is Jitter? Is jitter depending on congestion? Justify your answer. L4 | COS
+
+Ans. | Yes, jitter depends on congestion.
+Justification
+1. What is Jitter?
+
+Jitter is the variation in packet delay (1.e., packets do not arrive at equal time intervals).
+It is especially important in real-time applications like:
+
+
+(A)
+
+Ans.
+
+Voice over IP (VoIP)
+
+Video conferencing
+
+Online gaming
+
+2. How Congestion Causes Jitter
+
+(a) Congestion increases queueing delay
+When the network becomes congested:
+Routers’ buffers start filling up
+
+Some packets wait longer in queues
+Some packets experience shorter delay
+Thus, delay becomes inconsistent, leading to high jitter.
+(b) Packet drops and retransmissions
+Congestion leads to:
+
+Packet loss
+
+Retransmissions
+
+Variable end-to-end delay
+This creates irregular arrival times, increasing jitter further.
+
+(c) Sharing of bandwidth
+
+When many flows compete for router bandwidth:
+
+Some packets get served sooner
+
+Others wait longer
+
+This uneven servicing produces delay variation, 1.e., jitter.
+Conclusion
+
+Yes, jitter depends heavily on congestion.
+As congestion increases, queueing delays become unpredictable, packet loss rises, and transmission times vary—
+leading to higher jitter.
+
+(a) Explain the hierarchical structure of DNS name space with a diagram. (b) What are
+Generic and Country top-level domains? Give 2 examples each. (c) Who controls
+
+subdomain allocation? [8] L3 | COS
+
+(a) Explain the hierarchical structure of DNS name space with a diagram.
+
+DNS (Domain Name System) uses a hierarchical inverted-tree structure to translate domain names into IP
+addresses.
+The hierarchy consists of multiple levels:
+
+Root Level
+
+Represented by a dot (.).
+
+Highest level in the DNS structure.
+
+Manages pointers to all Top-Level Domains (TLDs).
+
+Top-Level Domains (TLDs)
+Directly under the root.
+Examples: .com, .org, .edu, .in, .uk
+
+Second-Level Domains
+
+Domain names registered by organizations/individuals.
+
+
+Example: example in example.com
+
+Subdomains
+Created by organizations for internal structure.
+
+Example: www.example.com, cs.mu.ac.in
+
+Host (individual machine)
+Final leaf node, representing an actual device.
+
+Diagram of DNS Hierarchy (Simple Text Diagram)
+
+example.com
+
+www.wikipedia.org
+
+(b) What are Generic and Country top-level domains? Give 2 examples each.
+1. Generic Top-Level Domains (gTLDs)
+
+These are global domains not tied to any particular country.
+They are generally meant for organizations, businesses, or purposes.
+
+Examples:
+.com — Commercial
+
+.org — Organizations
+(Other examples: .edu, .net, .gov)
+
+2. Country Code Top-Level Domains (ccTLDs)
+
+These represent specific countries and use two-letter ISO country codes.
+Examples:
+
+in — India
+
+.uk — United Kingdom
+
+(Other examples: .us, .jp, .au)
+
+(c) Who controls subdomain allocation?
+Subdomain allocation is controlled by the administrator/owner of the parent domain.
+
+Example:
+If an organization owns mu.ac.in, then the MU domain administrator can create subdomains like:
+
+
+cs.mu.ac.in
+exam.mu.ac.in
+admission.mu.ac.in
+
+They have full authority to create, modify, or remove subdomains.
+
+With a neat diagram, explain the 10-step DNS resolution process for a remote name lookup. CO5
+
+Ans. | When a client resolves a remote domain (e.g., www.example.com, DNS follows a hierarchical, iterative process
+across multiple name servers.
+
+10-Step DNS Resolution Process
+
+User enters the domain
+The browser receives a request for www.example.com.
+
+Check browser cache
+The browser first checks its own DNS cache for previously resolved entries.
+
+Check OS resolver cache
+If not found, the operating system resolver checks local cache (e.g., /etc/resolv.conf or Windows DNS cache).
+
+Query sent to Recursive Resolver (ISP DNS / Public DNS)
+The client forwards the DNS query to its configured recursive resolver (e.g., 8.8.8.8).
+
+Recursive resolver checks its own cache
+If no cached answer exists, it starts a full DNS lookup.
+
+Query to Root Name Server
+The resolver asks a root server: “Where is the .com TLD server?”
+Root replies with the list of .com TLD servers.
+
+Query to TLD (.com) Name Server
+The resolver asks the .com server: “Where is the authoritative server for example.com?”
+TLD replies with the authoritative servers for example.com.
+
+Query to Authoritative Name Server
+
+The resolver queries the authoritative server:
+“What is the IP of www.example.com?”
+
+It responds with the A record (IPv4 address).
+
+Recursive resolver returns the final answer
+The resolver sends the IP address back to the client machine.
+
+Client stores result in cache and connects to server
+The browser caches the response (for TTL duration) and makes a TCP/HTTPS connection to the resolved IP.
+
+Sample Diagram:
+
+
+Que
+
+Ans.
+
+IP Address
+
+8. IP Address Response to Client
+
+9. HTTP Connection
+
+Sketch and explain leaky bucket algorithm. [6] CO5
+
+Faucet Pie
+Host
+computer
+
+[J-— Packet
+<€ D> Unregulated
+
+flow
+
+hevert —, The bucket
+
+ue tara re holds
+containing ——»
+a leaky bucket packets
+
+a Regulated
+flow
+
+Water drips out of the
+hole at a constant rate
+
+Network
+(a) (b)
+The Leaky Bucket Algorithm is a traffic shaping and traffic policing technique used in computer networks to
+regulate the flow of packets into the network.
+
+It ensures that data is transmitted at a constant, steady rate, regardless of how bursty the incoming traffic is.
+Basic Concept
+
+Incoming packets enter a bucket (a buffer).
+
+The bucket leaks data out at a fixed, constant rate, irrespective of how fast the input arrives.
+If the bucket becomes full, extra incoming packets are discarded.
+
+Working of the Algorithm
+
+Packets arrive at the bucket (which acts as a queue).
+
+The bucket has a fixed capacity (buffer size).
+
+Packets are transmitted one by one at a constant rate (e.g., 1 packet per millisecond).
+
+If incoming traffic is faster than the drain rate:
+
+The bucket fills up.
+
+Once full, any additional packets are dropped.
+
+Thus, bursty input traffic becomes smooth output traffic.
+
+Characteristics
+
+Output rate is strictly constant, even if input is bursty.
+
+Prevents network congestion by maintaining stable load.
+
+Does not allow bursts during transmission (unlike token bucket).
+
+Advantages
+
+
