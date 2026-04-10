@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Answer Evaluation</title>
+</head>
+<body>
+
+<h2>Upload Answer Sheets</h2>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    
+    <label>Model Answer PDF:</label><br>
+    <input type="file" name="model" required><br><br>
+
+    <label>Student Answer PDF:</label><br>
+    <input type="file" name="student" required><br><br>
+
+    <button type="submit">Evaluate</button>
+
+</form>
+
+</body>
+</html>

@@ -1,105 +1,109 @@
-Enroll. No. Sy
+Enroll. No.
 
 MARWADI UNIVERSITY
+
 Faculty of Technology
+
 Information and Communication Technology
-ea _ B.Tech SEM: VI Mid 2 Exam April 2024
-Subject: -ArtificialIntelligence(01CT0616) = = TotalMarks:-30
+
+B.Tech SEM: VI Mid 2 Exam April 2024
+Subject: - Artificial Intelligence (01CT0616) Total Marks:-30
 
 1. What is Artificial Intelligence?
 
 A) Database. B) Simulation of human intelligence
 
-C) Hardware. D) Network Answer: 2
+C) Hardware. D) Network Answer:B
 2. What does NLP stand for?
 
 A) Network Layer Protocol B) Natural Language Processing
 
-C) Neural Language Program D) Numeric Logic Processing Answer: _Q-
+C) Neural Language Program D) Numeric Logic Processing Answer:B
 3. What is Machine Learning?
 
 A) Manual coding B) Learning from data
 
-C) Hardware design D) Networking Answer: QB.
-4. What is a dataset?
+C) Hardware design D) Networking Answer:B
+4, What is a dataset?
 
 A) Single value B) Collection of data
 
-C) Software D) Tool Answer: Q
+C) Software D) Tool Answer: B
 5. What is tokenization?
 
 A) Encryption B) Splitting text
 
-C) Storage D) Compression Answer: B.
+C) Storage D) Compression Answer: B
 6. Which of the following best describes supervised learning in Artificial Intelligence?
 A) Learning with labeled data B) Learning without labels
 
-C) Learning using rewards D) Learning randomly Answer: fA.
+C) Learning using rewards D) Learning randomly Answer:A
 
 7. Which technique is commonly used to measure similarity between two text
 documents in NLP applications?
 
 A) Sorting B) Cosine Similarity
 
-C) Searching D) Hashing Answer: A,
-
+C) Searching D) Hashing Answer: B
 
 8. What is the purpose of TF-IDF in text processing and information retrieval
 systems?
 
 A) Image processing B) Keyword extraction
-C) Data storage D) Encryption Answer: B
+C) Data storage D) Encryption Answer:B
 
-9, Which of the following correctly defines reinforcement learning in Artificial
+9. Which of the following correctly defines reinforcement learning in Artificial
 Intelligence systems?
 
 A) Learning with labeled data B) Learning through rewards and penalties
-C) Learning without any data D) Learning using images only Answer: Rg
+
+C) Learning without any data D) Learning using images only Answer:B
 
 10. What is the main role of an agent in an Artificial Intelligence system interacting
 with an environment?
 
 A) Store data B) Make decisions and perform actions
-C) Compile programs D) Display results Answer: QR
+C) Compile programs D) Display results Answer: B
 
 11. Which library is widely used for Natural Language Processing tasks in Python
 programming?
 
 A) NumPy B) NLTK
-C) Pandas D) OpenCV Answer: (3,
+C) Pandas D) OpenCV Answer: B
 
 12. What is the primary function of stopword removal during text preprocessing in
 NLP tasks?
 
 A) Remove important keywords B) Remove common words like “is”, “the”
-C) Add extra words D) Encrypt text Answer: A
+
+C) Add extra words D) Encrypt text Answer:B
 
 13. Which concept in game theory refers to a situation where no player benefits by
 changing their strategy alone?
 
 A) Zero-sum game B) Nash Equilibrium
-C) Heuristic D) Tokenization Answer: R
+C) Heuristic D) Tokenization Answer:B
 
 14. What is the function of the open list in the A search algorithm used in pathfinding
 problems?
 
 A) Store explored nodes B) Store nodes to be explored
 
-C) Store final path D) Store heuristic values Answer: 2
+C) Store final path D) Store heuristic values Answer:B
 
 15. What is the purpose of Optical Character Recognition (OCR) in Al-based systems
 and applications?
 
 A) Audio processing B) Text extraction from images
-C) Video editing D) Networking Answer: B
+C) Video editing D) Networking Answer:B
 
 16. In reinforcement learning, what does a reward signal represent when an agent
 interacts with an environment and takes actions?
 
 A) Punishment for incorrect actions B) Feedback indicating success or failure
-C) Cost of computation D) Random output Answer: QB
+C) Cost of computation D) Random output Answer: B
 
-17. What is the key difference between supervised learning and reinforcement
+17. What is the key difference between super vised learning and reinforcement
 learning in terms of how feedback is provided to the model?
 
 A) Supervised learning uses rewards
@@ -109,44 +113,46 @@ B) Reinforcement learning uses labeled data
 C) Reinforcement learning uses interaction-based feedback
 D) No difference
 
-Answer: (C
+Answer:C
 
 18. In Natural Language Processing, what is the role of tokenization when preparing
 raw text data for further processing?
 
 A) Encrypt text B) Split text into smaller units like words
-C) Store data D) Compress files Answer: Q
+
+C) Store data D) Compress files Answer:B
 
 19. What is the purpose of cosine similarity when comparing two documents in AI-
 based answer evaluation systems?
 
 A) Measure distance B) Measure similarity between text vectors
-C) Sort documents D) Encrypt data Answer: Q
+
+C) Sort documents D) Encrypt data Answer: B
 
 20. Which technique is used to extract important keywords from a dataset by
 considering both frequency and uniqueness of terms?
 
 A) Sorting B) TF-IDF
-C) Searching D) Hashing Answer: QB
+C) Searching D) Hashing Answer: B
 
 21. What is the role of the heuristic function in the A search algorithm when finding
 the shortest path in a graph?
 
-
 A) Exact cost calculation B) Estimated cost to goal
-C) Random value D) Final output Answer: Q
 
-22. In the A search algorithm, what is the significance of combining path cost and
+C) Random value D) Final output Answer: B
+
+22.In the A search algorithm, what is the significance of combining path cost and
 heuristic value for node evaluation?
 
 A) Random search B) Optimal path finding
 C) Data storage D) Encryption Answer: B
 
-23. In game theory, what does a zero-sum game indicate about the relationship
+23.In game theory, what does a zero-sum game indicate about the relationship
 between players’ gains and losses?
 
 A) All players win B) One player’s gain equals another’s loss
-C) No loss D) Random outcome Answer: 3
+C) No loss D) Random outcome Answer: B
 
 24. What is Nash Equilibrium in a competitive game scenario where multiple players
 choose strategies independently?
@@ -155,7 +161,7 @@ A) Best mutual strategy B) Random decision
 
 C) Worst case D) No solution Answer: A
 
-25. In an AI-based answer evaluation system, how is similarity between student
+25.In an Al-based answer evaluation system, how is similarity between student
 answer and model answer typically calculated?
 
 A) Sorting B) Cosine similarity
@@ -165,20 +171,20 @@ C) Searching D) Encoding Answer: B
 with high accuracy?
 
 A) Poor performance B) Model fits training data too well
-C) No learning D) Random output Answer: ie
+
+C) No learning D) Random output Answer: B
 
 27. What is underfitting in machine learning when a model fails to capture patterns
 from the training data?
 
 A) Perfect model B) Poor learning
 
-C) High accuracy D) Complex model Answer: 0
+C) High accuracy D) Complex model Answer: B
 
-28. In NLP preprocessing, why is stopword removal important when analyzing large
+28.In NLP preprocessing, why is stopword removal important when analyzing large
 text datasets?
 
 A) Increase noise B) Reduce unnecessary common words
 
-C) Add complexity D) Encrypt data Answer: Q
-
+C) Add complexity D) Encrypt data Answer: B
 
