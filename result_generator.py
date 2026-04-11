@@ -3,126 +3,152 @@ import csv
 import os
 
 # =========================
-# READ FILES
+# CREATE RESULTS FOLDER
 # =========================
-with open("processed/model/text/model.txt", "r") as f:
+os.makedirs("results", exist_ok=True)
+
+# =========================
+# READ OCR TEXT FILES
+# =========================
+model_file_path = "processed/model/text/model.txt"
+student_file_path = "processed/students/student_1/text/student.txt"
+
+# safety check
+if not os.path.exists(model_file_path):
+    print("❌ Model OCR file not found")
+    exit()
+
+if not os.path.exists(student_file_path):
+    print("❌ Student OCR file not found")
+    exit()
+
+with open(model_file_path, "r", encoding="utf-8") as f:
     model_text = f.read()
 
-with open("processed/students/student_1/text/student.txt", "r") as f:
+with open(student_file_path, "r", encoding="utf-8") as f:
     student_text = f.read()
 
-print("✅ Files Loaded")
+print("✅ OCR text files loaded")
+
 
 # =========================
-# REMOVE HEADER
+# FIX OCR LETTER ERRORS
 # =========================
-def remove_header(text):
-    if "1." in text:
-        return text.split("1.", 1)[1]
-    return text
+def normalize_answer(ans):
+    ans = ans.upper().strip()
 
-model_text = remove_header(model_text)
-student_text = remove_header(student_text)
-
-# =========================
-# CLEAN TEXT (STEP 2 FIX 🔥)
-# =========================
-def clean_text(text):
-    text = re.sub(r'([A-D])(\d+\.)', r'\1\n\2', text)
-    text = re.sub(r'([A-D])Q\.', r'\1\nQ.', text)
-    text = re.sub(r'(\d+)\.', r'\1. ', text)
-    text = re.sub(r'(?<!\n)(\d+\.)', r'\n\1', text)
-    return text
-
-model_text = clean_text(model_text)
-student_text = clean_text(student_text)
-
-# =========================
-# SPLIT MCQs
-# =========================
-def split_mcqs(text):
-    questions = re.split(r'\n(?=\d+\.)', text)
-    return [q.strip() for q in questions if q.strip()]
-
-model_mcqs = split_mcqs(model_text)
-student_mcqs = split_mcqs(student_text)
-
-print("Model:", len(model_mcqs))
-print("Student:", len(student_mcqs))
-
-# =========================
-# EXTRACT OPTION (STEP 3 FINAL 🔥)
-# =========================
-def extract_option(text):
-    text = text.upper()
-    
-    # 🔥 Fix OCR mistakes (advanced)
+    # Common OCR mistakes
     replacements = {
         "8": "B",
         "0": "D",
         "O": "D",
         "Q": "B",
         "P": "D",
+        "£": "B",
+        "]": "B",
+        "[": "C",
+        "{": "C",
+        "}": "C",
+        "(": "C",
+        ")": "C",
+        "I": "B",
+        "L": "B",
+        "S": "B",
         "|": "I"
     }
-    
-    for k, v in replacements.items():
-        text = text.replace(k, v)
-    
-    # 🔥 PRIORITY: Answer: X
-    match = re.search(r'ANSWER[:\s]*([A-D])', text)
-    if match:
-        return match.group(1)
-    
-    # 🔥 SECOND: detect last valid option
-    options = re.findall(r'\b([A-D])\b', text)
-    if options:
-        return options[-1]
-    
-    return ""
+
+    for wrong, correct in replacements.items():
+        ans = ans.replace(wrong, correct)
+
+    # extract only valid answer A/B/C/D
+    match = re.search(r'[A-D]', ans)
+    return match.group() if match else ""
+
 
 # =========================
-# DEBUG (VERY IMPORTANT 🔥)
+# EXTRACT ANSWERS
 # =========================
-print("\n--- DEBUG ---")
-for i in range(min(len(model_mcqs), len(student_mcqs))):
-    m = extract_option(model_mcqs[i])
-    s = extract_option(student_mcqs[i])
-    print(f"Q{i+1}: Model={m}, Student={s}")
+def extract_answers(text):
+    """
+    Extract only Answer: values
+    """
+    pattern = r'Answer[:\s]*([A-Za-z0-9£{}\]\[\(\)\|]+)'
+    raw_answers = re.findall(pattern, text, flags=re.IGNORECASE)
+
+    cleaned_answers = []
+
+    for ans in raw_answers:
+        fixed = normalize_answer(ans)
+
+        if fixed in ["A", "B", "C", "D"]:
+            cleaned_answers.append(fixed)
+
+    return cleaned_answers
+
 
 # =========================
-# COMPARE
+# GET ANSWERS
+# =========================
+model_answers = extract_answers(model_text)
+student_answers = extract_answers(student_text)
+
+print("\n📘 MODEL ANSWERS :", model_answers)
+print("🧑 STUDENT ANSWERS:", student_answers)
+
+
+# =========================
+# AUTO DETECT TOTAL QUESTIONS
+# =========================
+total = len(model_answers)
+
+# If OCR misses some student answers,
+# fill blanks for missing questions
+while len(student_answers) < total:
+    student_answers.append("")
+
+# Remove extra noise answers
+student_answers = student_answers[:total]
+
+# =========================
+# COMPARE ANSWERS
 # =========================
 score = 0
-total = min(len(model_mcqs), len(student_mcqs))
 
 for i in range(total):
-    m = extract_option(model_mcqs[i])
-    s = extract_option(student_mcqs[i])
-    
-    if m == s and m != "":
+    if model_answers[i] == student_answers[i]:
         score += 1
 
-percentage = (score / total) * 100
-
-print("\n📊 FINAL RESULT")
-print("Score:", score)
-print("Total:", total)
-print("Percentage:", round(percentage, 2), "%")
+percentage = (score / total) * 100 if total > 0 else 0
 
 # =========================
-# SAVE RESULT
+# DISPLAY RESULT
+# =========================
+print("\n📊 FINAL RESULT")
+print("Marks      :", score)
+print("Total      :", total)
+print("Percentage :", round(percentage, 2), "%")
+
+
+# =========================
+# SAVE CSV (FRESH WRITE)
 # =========================
 file_path = "results/results.csv"
 
-file_exists = os.path.exists(file_path) and os.path.getsize(file_path) > 0
-
-with open(file_path, "a", newline="") as f:
+with open(file_path, "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
-    
-    if not file_exists:
-        writer.writerow(["Student_ID", "Marks", "Total", "Percentage"])
-    
-    writer.writerow(["student_1", score, total, round(percentage, 2)])
 
-print("✅ Result Saved")
+    writer.writerow([
+        "Student_ID",
+        "Marks",
+        "Total",
+        "Percentage"
+    ])
+
+    writer.writerow([
+        "student_1",
+        score,
+        total,
+        round(percentage, 2)
+    ])
+
+print("✅ Result saved successfully in results/results.csv")
