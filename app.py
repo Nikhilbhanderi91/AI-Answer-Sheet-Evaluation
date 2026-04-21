@@ -48,7 +48,7 @@ def upload():
 
     print("Running OCR...")
     subprocess.run(
-        ["python", "ocr_extract.py", student_name],
+        ["python", "ocr_advanced.py", student_name],
         check=True
     )
 

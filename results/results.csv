@@ -1,2 +1,9 @@
 Student_ID,Marks,Total,Percentage
-student_1,10,15,66.67
+mcq_student_answer,0,0,0
+mcq_student_answer,5,32,15.62
+student_1,9,25,36.0
+student_1,7,11,63.64
+student_1,8,22,36.36
+mcq_student_answer,0,0,0
+student_1,8,22,36.36
+student_1,7,22,31.82
