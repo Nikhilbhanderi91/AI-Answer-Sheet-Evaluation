@@ -61,4 +61,4 @@ with open(model_text_path, "w") as f:
 with open(student_text_path, "w") as f:
     f.write(student_text)
 
-print("✅ PaddleOCR Done")
+print(" PaddleOCR Done")
